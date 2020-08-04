@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <%- include("./header"); %>
+  <body>
+    <div id="home_main">
+      <%- include("./menu"); %>
+      <div id="home_top"></div>
+    	<div id="home_title">
+        도구미
+      </div>
+			<div id="home_mainbox">
+        <p>지금은 <%= JSON.stringify(today).substring(1,5)%>년 <%= JSON.stringify(today).substring(6,8)%>월 <%= JSON.stringify(today).substring(9,11)%>일입니다.</p>
+        <div style="height: 50px;"></div>
+        <p>현재 서재에 담겨있는 책은 <%= cnt%>권입니다.</p>
+			</div>
+    </div>
+    <%- include("./footer"); %>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <%- include("./header"); %>
+  <body>
+    <div id="add_main">
+      <%- include("./menu"); %>
+      <div id="add_top"></div>
+    	<div id="add_title">
+        도서 등록
+      </div>
+			<div id="add_form">
+        <div id="add_information">
+          <div id="add_form_title">
+            <p>Title</p>
+            <input type="text" class="title">
+          </div>
+          <div id="add_form_author">
+            <p>Author</p>
+            <input type="text" class="author">
+          </div>
+        </div>
+        <div id="add_submit">
+          <button type="button" id="addBtn">Confirm</buton>
+        </div>
+      </form>
+    </div>
+    <%- include("./footer"); %>
+    <script>
+      $(document).ready(function(){
+        $("#addBtn").on("click",()=>{
+          const result=confirm('추가하시겠습니까?');
+          const title = $(".title").val();
+          const author = $(".author").val();
+          if(result){
+            $.ajax({
+              url:`/api/books?title=${title}&author=${author}`, 
+              type:"post"
+            }).done((result)=>{
+              location.href=`/addresult?title=${result.title}&author=${result.author}`;
+            }).fail((request,status,error)=>{
+              console.log(error);
+              alert(request.responseText);
+            });
+          }
+          else{
+            console.log("nop");
+          }
+        })
+      })
+    </script>
+  </body>
+</html>

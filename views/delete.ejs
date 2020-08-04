@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <%- include("./header"); %>
+  <body>
+    <div id="del_main">
+      <%- include("./menu"); %>
+      <div id="del_top"></div>
+    	<div id="del_title">
+        도서 삭제
+      </div>
+      <div id="del_form">
+        <div id="del_information">
+          <div id="del_form_id">
+            <p>Book ID</p>
+            <input type="text" id="id">
+          </div>
+        </div>
+        <div id="del_submit">
+          <button type="button" id="deleteBtn">Delete</button>
+        </div>
+      </div>
+        <footer>  
+        </footer>
+    </div>
+    <%- include("./footer"); %>
+    <script>
+      $(function(){
+        $("#deleteBtn").on("click",()=>{
+          const result=confirm('삭제하시겠습니까?');
+          const id = $("#id").val();
+          console.log(id);
+          if(result){
+            $.ajax({
+              url:"/api/books/" + id, 
+              type:"delete"
+            }).done((result)=>{
+              if(id=="all") {
+                location.href="/delresult?title=all&author=all";
+              } 
+              else {
+              console.log(result);
+              console.log(result._id);
+              console.log(result.title);
+              console.log(result.author);
+              location.href=`/delresult?title=${result.title}&author=${result.author}`;
+              };
+            }).fail((request,status,error)=>{
+              console.log(error);
+              alert(request.responseText);
+            });
+          }
+          else{
+            console.log("nop");
+          }
+        })
+      })
+    </script>
+  </body>
+</html>

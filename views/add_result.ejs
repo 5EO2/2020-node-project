@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <%- include("./header"); %>
+  <body>
+    <div id="add_main">
+      <%- include("./menu"); %>
+      <div id="add_top"></div>
+    	<div id="add_title">
+        도서 등록
+      </div>
+      <div id="addresult">
+        다음의 도서가 새롭게 등록되었습니다.
+        <div style="height: 50px;"></div>
+        제목: <%=title%> <br>
+        저자: <%=author%>
+      </div>
+    </div>
+    <%- include("./footer"); %>
+  </body>
+</html>

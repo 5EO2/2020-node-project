@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <%- include("./header"); %>
+  <body>
+    <div id="list_main">
+      <%- include("./menu"); %>
+      <div id="list_top"></div>
+    	<div id="list_title">
+        도서 목록
+      </div>
+      <div id="list_tableview">
+        <table id="list_table" border="0" cellspacing="0" cellpadding="0">
+          <tr class="fixed_top">
+            <th width="60px">No.</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Book ID</th>
+          </tr>
+            <% object.forEach(function(book, index) { %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= book.title %></td>
+              <td><%= book.author %></td>
+              <td><%= book._id %></td>
+            </tr>
+          <% }) %>
+        </table>
+      </div>			
+    </div>
+    <%- include("./footer"); %>
+  </body>
+</html>
